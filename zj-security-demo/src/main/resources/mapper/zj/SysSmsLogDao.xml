@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zj.dao.SysSmsLogDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zj.entity.SysSmsLog" id="sysSmsLogMap">
+        <result property="id" column="ID"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="templateId" column="TEMPLATE_ID"/>
+        <result property="code" column="CODE"/>
+        <result property="content" column="CONTENT"/>
+        <result property="mobile" column="MOBILE"/>
+        <result property="stime" column="STIME"/>
+        <result property="sign" column="SIGN"/>
+        <result property="sendStatus" column="SEND_STATUS"/>
+        <result property="sendId" column="SEND_ID"/>
+        <result property="successNum" column="SUCCESS_NUM"/>
+        <result property="returnMsg" column="RETURN_MSG"/>
+    </resultMap>
+
+
+</mapper>
