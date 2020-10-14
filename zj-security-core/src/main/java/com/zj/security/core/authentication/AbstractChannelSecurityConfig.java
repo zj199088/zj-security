@@ -1,11 +1,13 @@
 package com.zj.security.core.authentication;
 
 import com.zj.security.core.properties.ImoocSecurityConstants;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -14,10 +16,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  * @date 2020 2020/10/14 14:32
  */
 public class AbstractChannelSecurityConfig   extends WebSecurityConfigurerAdapter {
-    @Autowired
+    @Resource
     protected AuthenticationSuccessHandler authenticationSuccessHandler;
 
-    @Autowired
+    @Resource
     protected AuthenticationFailureHandler authenticationFailureHandler;
 
     /**
