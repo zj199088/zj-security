@@ -7,9 +7,7 @@ server:
     accept-count: 5000
   port: 8082
 ##################### security
-security:
-  basic:
-    enabled: false
+
 ##################### spring
 spring:
   main:
@@ -77,3 +75,9 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+################
+zj:
+  security:
+    code:
+      image:
+        url: /a,/b/*

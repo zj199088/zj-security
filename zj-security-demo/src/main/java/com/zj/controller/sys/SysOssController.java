@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysRoleMenu;
-import com.zj.service.SysRoleMenuService;
+import com.zj.entity.SysOss;
+import com.zj.service.SysOssService;
 
 /**
- * 角色与菜单对应关系
+ * 文件上传
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "角色与菜单对应关系 管理")
+@Api(tags = "文件上传 管理")
 @RestController
-@RequestMapping("zj/sysrolemenu")
-public class SysRoleMenuController {
+@RequestMapping("zj/sysoss")
+public class SysOssController {
     @Autowired
-    private SysRoleMenuService sysRoleMenuService;
+    private SysOssService sysOssService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:sysrolemenu:list')")
+    @PreAuthorize("hasAuthority('zj:sysoss:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysRoleMenuService.queryPage(queryCondition);
+        PageVo page = sysOssService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -44,11 +44,11 @@ public class SysRoleMenuController {
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('zj:sysrolemenu:info')")
-    public Resp<SysRoleMenu> info(@PathVariable("id") String id){
-		SysRoleMenu sysRoleMenu = sysRoleMenuService.getById(id);
+    @PreAuthorize("hasAuthority('zj:sysoss:info')")
+    public Resp<SysOss> info(@PathVariable("id") String id){
+		SysOss sysOss = sysOssService.getById(id);
 
-        return Resp.ok(sysRoleMenu);
+        return Resp.ok(sysOss);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysRoleMenuController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:sysrolemenu:save')")
-    public Resp<Object> save(@RequestBody SysRoleMenu sysRoleMenu){
-		sysRoleMenuService.save(sysRoleMenu);
+    @PreAuthorize("hasAuthority('zj:sysoss:save')")
+    public Resp<Object> save(@RequestBody SysOss sysOss){
+		sysOssService.save(sysOss);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysRoleMenuController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:sysrolemenu:update')")
-    public Resp<Object> update(@RequestBody SysRoleMenu sysRoleMenu){
-		sysRoleMenuService.updateById(sysRoleMenu);
+    @PreAuthorize("hasAuthority('zj:sysoss:update')")
+    public Resp<Object> update(@RequestBody SysOss sysOss){
+		sysOssService.updateById(sysOss);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysRoleMenuController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:sysrolemenu:delete')")
+    @PreAuthorize("hasAuthority('zj:sysoss:delete')")
     public Resp<Object> delete(@RequestBody String[] ids){
-		sysRoleMenuService.removeByIds(Arrays.asList(ids));
+		sysOssService.removeByIds(Arrays.asList(ids));
 
         return Resp.ok(null);
     }

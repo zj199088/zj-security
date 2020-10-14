@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysSmsLog;
-import com.zj.service.SysSmsLogService;
+import com.zj.entity.SysConfig;
+import com.zj.service.SysConfigService;
 
 /**
- * 短信发送日志
+ * 系统配置信息表
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "短信发送日志 管理")
+@Api(tags = "系统配置信息表 管理")
 @RestController
-@RequestMapping("zj/syssmslog")
-public class SysSmsLogController {
+@RequestMapping("zj/sysconfig")
+public class SysConfigController {
     @Autowired
-    private SysSmsLogService sysSmsLogService;
+    private SysConfigService sysConfigService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:syssmslog:list')")
+    @PreAuthorize("hasAuthority('zj:sysconfig:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysSmsLogService.queryPage(queryCondition);
+        PageVo page = sysConfigService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -44,11 +44,11 @@ public class SysSmsLogController {
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('zj:syssmslog:info')")
-    public Resp<SysSmsLog> info(@PathVariable("id") String id){
-		SysSmsLog sysSmsLog = sysSmsLogService.getById(id);
+    @PreAuthorize("hasAuthority('zj:sysconfig:info')")
+    public Resp<SysConfig> info(@PathVariable("id") String id){
+		SysConfig sysConfig = sysConfigService.getById(id);
 
-        return Resp.ok(sysSmsLog);
+        return Resp.ok(sysConfig);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysSmsLogController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:syssmslog:save')")
-    public Resp<Object> save(@RequestBody SysSmsLog sysSmsLog){
-		sysSmsLogService.save(sysSmsLog);
+    @PreAuthorize("hasAuthority('zj:sysconfig:save')")
+    public Resp<Object> save(@RequestBody SysConfig sysConfig){
+		sysConfigService.save(sysConfig);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysSmsLogController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:syssmslog:update')")
-    public Resp<Object> update(@RequestBody SysSmsLog sysSmsLog){
-		sysSmsLogService.updateById(sysSmsLog);
+    @PreAuthorize("hasAuthority('zj:sysconfig:update')")
+    public Resp<Object> update(@RequestBody SysConfig sysConfig){
+		sysConfigService.updateById(sysConfig);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysSmsLogController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:syssmslog:delete')")
+    @PreAuthorize("hasAuthority('zj:sysconfig:delete')")
     public Resp<Object> delete(@RequestBody String[] ids){
-		sysSmsLogService.removeByIds(Arrays.asList(ids));
+		sysConfigService.removeByIds(Arrays.asList(ids));
 
         return Resp.ok(null);
     }

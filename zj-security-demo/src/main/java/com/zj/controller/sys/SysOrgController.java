@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysMenu;
-import com.zj.service.SysMenuService;
+import com.zj.entity.SysOrg;
+import com.zj.service.SysOrgService;
 
 /**
- * 菜单管理
+ * 组织机构
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "菜单管理 管理")
+@Api(tags = "组织机构 管理")
 @RestController
-@RequestMapping("zj/sysmenu")
-public class SysMenuController {
+@RequestMapping("zj/sysorg")
+public class SysOrgController {
     @Autowired
-    private SysMenuService sysMenuService;
+    private SysOrgService sysOrgService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:sysmenu:list')")
+    @PreAuthorize("hasAuthority('zj:sysorg:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysMenuService.queryPage(queryCondition);
+        PageVo page = sysOrgService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -43,12 +43,12 @@ public class SysMenuController {
      * 信息
      */
     @ApiOperation("详情查询")
-    @GetMapping("/info/{menuId}")
-    @PreAuthorize("hasAuthority('zj:sysmenu:info')")
-    public Resp<SysMenu> info(@PathVariable("menuId") String menuId){
-		SysMenu sysMenu = sysMenuService.getById(menuId);
+    @GetMapping("/info/{orgNo}")
+    @PreAuthorize("hasAuthority('zj:sysorg:info')")
+    public Resp<SysOrg> info(@PathVariable("orgNo") String orgNo){
+		SysOrg sysOrg = sysOrgService.getById(orgNo);
 
-        return Resp.ok(sysMenu);
+        return Resp.ok(sysOrg);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysMenuController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:sysmenu:save')")
-    public Resp<Object> save(@RequestBody SysMenu sysMenu){
-		sysMenuService.save(sysMenu);
+    @PreAuthorize("hasAuthority('zj:sysorg:save')")
+    public Resp<Object> save(@RequestBody SysOrg sysOrg){
+		sysOrgService.save(sysOrg);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysMenuController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:sysmenu:update')")
-    public Resp<Object> update(@RequestBody SysMenu sysMenu){
-		sysMenuService.updateById(sysMenu);
+    @PreAuthorize("hasAuthority('zj:sysorg:update')")
+    public Resp<Object> update(@RequestBody SysOrg sysOrg){
+		sysOrgService.updateById(sysOrg);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysMenuController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:sysmenu:delete')")
-    public Resp<Object> delete(@RequestBody String[] menuIds){
-		sysMenuService.removeByIds(Arrays.asList(menuIds));
+    @PreAuthorize("hasAuthority('zj:sysorg:delete')")
+    public Resp<Object> delete(@RequestBody String[] orgNos){
+		sysOrgService.removeByIds(Arrays.asList(orgNos));
 
         return Resp.ok(null);
     }

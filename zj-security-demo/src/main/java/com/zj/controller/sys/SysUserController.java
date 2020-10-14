@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysUserToken;
-import com.zj.service.SysUserTokenService;
+import com.zj.entity.SysUser;
+import com.zj.service.SysUserService;
 
 /**
- * 系统用户Token
+ * 系统用户
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "系统用户Token 管理")
+@Api(tags = "系统用户 管理")
 @RestController
-@RequestMapping("zj/sysusertoken")
-public class SysUserTokenController {
+@RequestMapping("zj/sysuser")
+public class SysUserController {
     @Autowired
-    private SysUserTokenService sysUserTokenService;
+    private SysUserService sysUserService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:sysusertoken:list')")
+    @PreAuthorize("hasAuthority('zj:sysuser:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysUserTokenService.queryPage(queryCondition);
+        PageVo page = sysUserService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -44,11 +44,11 @@ public class SysUserTokenController {
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{userId}")
-    @PreAuthorize("hasAuthority('zj:sysusertoken:info')")
-    public Resp<SysUserToken> info(@PathVariable("userId") String userId){
-		SysUserToken sysUserToken = sysUserTokenService.getById(userId);
+    @PreAuthorize("hasAuthority('zj:sysuser:info')")
+    public Resp<SysUser> info(@PathVariable("userId") String userId){
+		SysUser sysUser = sysUserService.getById(userId);
 
-        return Resp.ok(sysUserToken);
+        return Resp.ok(sysUser);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysUserTokenController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:sysusertoken:save')")
-    public Resp<Object> save(@RequestBody SysUserToken sysUserToken){
-		sysUserTokenService.save(sysUserToken);
+    @PreAuthorize("hasAuthority('zj:sysuser:save')")
+    public Resp<Object> save(@RequestBody SysUser sysUser){
+		sysUserService.save(sysUser);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysUserTokenController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:sysusertoken:update')")
-    public Resp<Object> update(@RequestBody SysUserToken sysUserToken){
-		sysUserTokenService.updateById(sysUserToken);
+    @PreAuthorize("hasAuthority('zj:sysuser:update')")
+    public Resp<Object> update(@RequestBody SysUser sysUser){
+		sysUserService.updateById(sysUser);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysUserTokenController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:sysusertoken:delete')")
+    @PreAuthorize("hasAuthority('zj:sysuser:delete')")
     public Resp<Object> delete(@RequestBody String[] userIds){
-		sysUserTokenService.removeByIds(Arrays.asList(userIds));
+		sysUserService.removeByIds(Arrays.asList(userIds));
 
         return Resp.ok(null);
     }

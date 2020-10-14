@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysUserRole;
-import com.zj.service.SysUserRoleService;
+import com.zj.entity.SysDictGroup;
+import com.zj.service.SysDictGroupService;
 
 /**
- * 用户与角色对应关系
+ * 数据字典分组
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "用户与角色对应关系 管理")
+@Api(tags = "数据字典分组 管理")
 @RestController
-@RequestMapping("zj/sysuserrole")
-public class SysUserRoleController {
+@RequestMapping("zj/sysdictgroup")
+public class SysDictGroupController {
     @Autowired
-    private SysUserRoleService sysUserRoleService;
+    private SysDictGroupService sysDictGroupService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:sysuserrole:list')")
+    @PreAuthorize("hasAuthority('zj:sysdictgroup:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysUserRoleService.queryPage(queryCondition);
+        PageVo page = sysDictGroupService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -44,11 +44,11 @@ public class SysUserRoleController {
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('zj:sysuserrole:info')")
-    public Resp<SysUserRole> info(@PathVariable("id") String id){
-		SysUserRole sysUserRole = sysUserRoleService.getById(id);
+    @PreAuthorize("hasAuthority('zj:sysdictgroup:info')")
+    public Resp<SysDictGroup> info(@PathVariable("id") String id){
+		SysDictGroup sysDictGroup = sysDictGroupService.getById(id);
 
-        return Resp.ok(sysUserRole);
+        return Resp.ok(sysDictGroup);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysUserRoleController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:sysuserrole:save')")
-    public Resp<Object> save(@RequestBody SysUserRole sysUserRole){
-		sysUserRoleService.save(sysUserRole);
+    @PreAuthorize("hasAuthority('zj:sysdictgroup:save')")
+    public Resp<Object> save(@RequestBody SysDictGroup sysDictGroup){
+		sysDictGroupService.save(sysDictGroup);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysUserRoleController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:sysuserrole:update')")
-    public Resp<Object> update(@RequestBody SysUserRole sysUserRole){
-		sysUserRoleService.updateById(sysUserRole);
+    @PreAuthorize("hasAuthority('zj:sysdictgroup:update')")
+    public Resp<Object> update(@RequestBody SysDictGroup sysDictGroup){
+		sysDictGroupService.updateById(sysDictGroup);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysUserRoleController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:sysuserrole:delete')")
+    @PreAuthorize("hasAuthority('zj:sysdictgroup:delete')")
     public Resp<Object> delete(@RequestBody String[] ids){
-		sysUserRoleService.removeByIds(Arrays.asList(ids));
+		sysDictGroupService.removeByIds(Arrays.asList(ids));
 
         return Resp.ok(null);
     }

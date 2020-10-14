@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysOss;
-import com.zj.service.SysOssService;
+import com.zj.entity.SysRoleOrg;
+import com.zj.service.SysRoleOrgService;
 
 /**
- * 文件上传
+ * 角色与机构对应关系
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "文件上传 管理")
+@Api(tags = "角色与机构对应关系 管理")
 @RestController
-@RequestMapping("zj/sysoss")
-public class SysOssController {
+@RequestMapping("zj/sysroleorg")
+public class SysRoleOrgController {
     @Autowired
-    private SysOssService sysOssService;
+    private SysRoleOrgService sysRoleOrgService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:sysoss:list')")
+    @PreAuthorize("hasAuthority('zj:sysroleorg:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysOssService.queryPage(queryCondition);
+        PageVo page = sysRoleOrgService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -44,11 +44,11 @@ public class SysOssController {
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('zj:sysoss:info')")
-    public Resp<SysOss> info(@PathVariable("id") String id){
-		SysOss sysOss = sysOssService.getById(id);
+    @PreAuthorize("hasAuthority('zj:sysroleorg:info')")
+    public Resp<SysRoleOrg> info(@PathVariable("id") String id){
+		SysRoleOrg sysRoleOrg = sysRoleOrgService.getById(id);
 
-        return Resp.ok(sysOss);
+        return Resp.ok(sysRoleOrg);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysOssController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:sysoss:save')")
-    public Resp<Object> save(@RequestBody SysOss sysOss){
-		sysOssService.save(sysOss);
+    @PreAuthorize("hasAuthority('zj:sysroleorg:save')")
+    public Resp<Object> save(@RequestBody SysRoleOrg sysRoleOrg){
+		sysRoleOrgService.save(sysRoleOrg);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysOssController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:sysoss:update')")
-    public Resp<Object> update(@RequestBody SysOss sysOss){
-		sysOssService.updateById(sysOss);
+    @PreAuthorize("hasAuthority('zj:sysroleorg:update')")
+    public Resp<Object> update(@RequestBody SysRoleOrg sysRoleOrg){
+		sysRoleOrgService.updateById(sysRoleOrg);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysOssController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:sysoss:delete')")
+    @PreAuthorize("hasAuthority('zj:sysroleorg:delete')")
     public Resp<Object> delete(@RequestBody String[] ids){
-		sysOssService.removeByIds(Arrays.asList(ids));
+		sysRoleOrgService.removeByIds(Arrays.asList(ids));
 
         return Resp.ok(null);
     }

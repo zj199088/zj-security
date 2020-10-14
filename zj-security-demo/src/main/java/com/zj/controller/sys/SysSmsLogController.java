@@ -1,4 +1,4 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
 
@@ -11,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysRoleOrg;
-import com.zj.service.SysRoleOrgService;
+import com.zj.entity.SysSmsLog;
+import com.zj.service.SysSmsLogService;
 
 /**
- * 角色与机构对应关系
+ * 短信发送日志
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "角色与机构对应关系 管理")
+@Api(tags = "短信发送日志 管理")
 @RestController
-@RequestMapping("zj/sysroleorg")
-public class SysRoleOrgController {
+@RequestMapping("zj/syssmslog")
+public class SysSmsLogController {
     @Autowired
-    private SysRoleOrgService sysRoleOrgService;
+    private SysSmsLogService sysSmsLogService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:sysroleorg:list')")
+    @PreAuthorize("hasAuthority('zj:syssmslog:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysRoleOrgService.queryPage(queryCondition);
+        PageVo page = sysSmsLogService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -44,11 +44,11 @@ public class SysRoleOrgController {
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('zj:sysroleorg:info')")
-    public Resp<SysRoleOrg> info(@PathVariable("id") String id){
-		SysRoleOrg sysRoleOrg = sysRoleOrgService.getById(id);
+    @PreAuthorize("hasAuthority('zj:syssmslog:info')")
+    public Resp<SysSmsLog> info(@PathVariable("id") String id){
+		SysSmsLog sysSmsLog = sysSmsLogService.getById(id);
 
-        return Resp.ok(sysRoleOrg);
+        return Resp.ok(sysSmsLog);
     }
 
     /**
@@ -56,9 +56,9 @@ public class SysRoleOrgController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:sysroleorg:save')")
-    public Resp<Object> save(@RequestBody SysRoleOrg sysRoleOrg){
-		sysRoleOrgService.save(sysRoleOrg);
+    @PreAuthorize("hasAuthority('zj:syssmslog:save')")
+    public Resp<Object> save(@RequestBody SysSmsLog sysSmsLog){
+		sysSmsLogService.save(sysSmsLog);
 
         return Resp.ok(null);
     }
@@ -68,9 +68,9 @@ public class SysRoleOrgController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:sysroleorg:update')")
-    public Resp<Object> update(@RequestBody SysRoleOrg sysRoleOrg){
-		sysRoleOrgService.updateById(sysRoleOrg);
+    @PreAuthorize("hasAuthority('zj:syssmslog:update')")
+    public Resp<Object> update(@RequestBody SysSmsLog sysSmsLog){
+		sysSmsLogService.updateById(sysSmsLog);
 
         return Resp.ok(null);
     }
@@ -80,9 +80,9 @@ public class SysRoleOrgController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:sysroleorg:delete')")
+    @PreAuthorize("hasAuthority('zj:syssmslog:delete')")
     public Resp<Object> delete(@RequestBody String[] ids){
-		sysRoleOrgService.removeByIds(Arrays.asList(ids));
+		sysSmsLogService.removeByIds(Arrays.asList(ids));
 
         return Resp.ok(null);
     }

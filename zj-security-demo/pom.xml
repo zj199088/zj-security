@@ -16,8 +16,8 @@
     <dependencies>
         <dependency>
             <groupId>com.zj.security</groupId>
-            <artifactId>zj-security-core</artifactId>
-            <version>${zj.security.version}</version>
+            <artifactId>zj-security-browser</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- 引入 Web 功能 -->
         <dependency>
@@ -133,6 +133,26 @@
 
     </dependencies>
 
+    <build>
+        <finalName>${project.artifactId}</finalName><!--打jar包去掉版本号-->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 
 </project>

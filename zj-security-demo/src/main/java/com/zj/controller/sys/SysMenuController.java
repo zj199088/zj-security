@@ -1,6 +1,7 @@
-package com.zj.controller;
+package com.zj.controller.sys;
 
 import java.util.Arrays;
+
 import com.zj.common.bean.PageVo;
 import com.zj.common.bean.QueryCondition;
 import com.zj.common.bean.Resp;
@@ -10,29 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.zj.entity.SysLog;
-import com.zj.service.SysLogService;
+import com.zj.entity.SysMenu;
+import com.zj.service.SysMenuService;
 
 /**
- * 系统日志
+ * 菜单管理
  * @author zj
  * @since  2020-10-14 10:58:49
  */
-@Api(tags = "系统日志 管理")
+@Api(tags = "菜单管理 管理")
 @RestController
-@RequestMapping("zj/syslog")
-public class SysLogController {
+@RequestMapping("zj/sysmenu")
+public class SysMenuController {
     @Autowired
-    private SysLogService sysLogService;
+    private SysMenuService sysMenuService;
 
     /**
      * 列表
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('zj:syslog:list')")
+    @PreAuthorize("hasAuthority('zj:sysmenu:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
-        PageVo page = sysLogService.queryPage(queryCondition);
+        PageVo page = sysMenuService.queryPage(queryCondition);
 
         return Resp.ok(page);
     }
@@ -42,12 +43,12 @@ public class SysLogController {
      * 信息
      */
     @ApiOperation("详情查询")
-    @GetMapping("/info/{id}")
-    @PreAuthorize("hasAuthority('zj:syslog:info')")
-    public Resp<SysLog> info(@PathVariable("id") String id){
-		SysLog sysLog = sysLogService.getById(id);
+    @GetMapping("/info/{menuId}")
+    @PreAuthorize("hasAuthority('zj:sysmenu:info')")
+    public Resp<SysMenu> info(@PathVariable("menuId") String menuId){
+		SysMenu sysMenu = sysMenuService.getById(menuId);
 
-        return Resp.ok(sysLog);
+        return Resp.ok(sysMenu);
     }
 
     /**
@@ -55,9 +56,9 @@ public class SysLogController {
      */
     @ApiOperation("保存")
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('zj:syslog:save')")
-    public Resp<Object> save(@RequestBody SysLog sysLog){
-		sysLogService.save(sysLog);
+    @PreAuthorize("hasAuthority('zj:sysmenu:save')")
+    public Resp<Object> save(@RequestBody SysMenu sysMenu){
+		sysMenuService.save(sysMenu);
 
         return Resp.ok(null);
     }
@@ -67,9 +68,9 @@ public class SysLogController {
      */
     @ApiOperation("修改")
     @PostMapping("/update")
-    @PreAuthorize("hasAuthority('zj:syslog:update')")
-    public Resp<Object> update(@RequestBody SysLog sysLog){
-		sysLogService.updateById(sysLog);
+    @PreAuthorize("hasAuthority('zj:sysmenu:update')")
+    public Resp<Object> update(@RequestBody SysMenu sysMenu){
+		sysMenuService.updateById(sysMenu);
 
         return Resp.ok(null);
     }
@@ -79,9 +80,9 @@ public class SysLogController {
      */
     @ApiOperation("删除")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('zj:syslog:delete')")
-    public Resp<Object> delete(@RequestBody String[] ids){
-		sysLogService.removeByIds(Arrays.asList(ids));
+    @PreAuthorize("hasAuthority('zj:sysmenu:delete')")
+    public Resp<Object> delete(@RequestBody String[] menuIds){
+		sysMenuService.removeByIds(Arrays.asList(menuIds));
 
         return Resp.ok(null);
     }
