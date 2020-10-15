@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @author zj
  */
-@ConfigurationProperties(prefix = "imooc.security")
+@ConfigurationProperties(prefix = "zj.security")
 public class SecurityProperties {
     private BrowserProperties browser = new BrowserProperties();
     private ValidateCodeProperties code = new ValidateCodeProperties();

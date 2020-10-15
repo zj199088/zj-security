@@ -1,6 +1,6 @@
 package com.zj.security.core.authentication;
 
-import com.zj.security.core.properties.ImoocSecurityConstants;
+import com.zj.security.core.properties.ZjSecurityConstants;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -15,11 +15,11 @@ import javax.annotation.Resource;
  * @date 2020 2020/10/14 14:32
  */
 public class AbstractChannelSecurityConfig   extends WebSecurityConfigurerAdapter {
-    @Resource
-    protected AuthenticationSuccessHandler authenticationSuccessHandler;
-
-    @Resource
-    protected AuthenticationFailureHandler authenticationFailureHandler;
+//    @Resource
+//    protected AuthenticationSuccessHandler authenticationSuccessHandler;
+//
+//    @Resource
+//    protected AuthenticationFailureHandler authenticationFailureHandler;
 
     /**
      * 配置了表单登录
@@ -31,12 +31,12 @@ public class AbstractChannelSecurityConfig   extends WebSecurityConfigurerAdapte
      * @param http
      * @throws Exception
      */
-    protected void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {
-        http.formLogin()
-                .loginPage(ImoocSecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
-                .loginProcessingUrl(ImoocSecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler);
-    }
+//    protected void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {
+//        http.formLogin()
+//                .loginPage(ZjSecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
+//                .loginProcessingUrl(ZjSecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
+//                .successHandler(authenticationSuccessHandler)
+//                .failureHandler(authenticationFailureHandler);
+//    }
 
 }

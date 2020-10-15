@@ -3,7 +3,7 @@ package com.zj.security.core.properties;
 /**
  * @author zj
  */
-public class ImoocSecurityConstants {
+public class ZjSecurityConstants {
 
     /**
      * 发送短信验证码 或 验证短信验证码 时, 传递手机号参数的名称

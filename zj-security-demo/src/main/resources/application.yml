@@ -6,6 +6,9 @@ server:
   port: 8082
 
 ##################### security
+security:
+  basic:
+    enable: false
 
 ##################### spring
 spring:
@@ -80,3 +83,13 @@ zj:
     code:
       image:
         url: /a,/b/*
+        width: 70
+        height: 25
+      sms:
+        length: 6
+        expireIn: 300
+    browser:
+      loginPage: /demo-signIn.html
+      loginType: REDIRECT
+
+

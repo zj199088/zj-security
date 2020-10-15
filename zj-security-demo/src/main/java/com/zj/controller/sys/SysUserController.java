@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import com.zj.entity.SysUser;
 import com.zj.service.SysUserService;
 
+
 /**
  * 系统用户
  * @author zj
@@ -26,6 +27,7 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
+
     /**
      * 列表
      */
@@ -34,7 +36,6 @@ public class SysUserController {
     @PreAuthorize("hasAuthority('zj:sysuser:list')")
     public Resp<PageVo> list(QueryCondition queryCondition) {
         PageVo page = sysUserService.queryPage(queryCondition);
-
         return Resp.ok(page);
     }
 

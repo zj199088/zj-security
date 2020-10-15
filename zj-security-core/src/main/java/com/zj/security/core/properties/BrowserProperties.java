@@ -6,7 +6,7 @@ package com.zj.security.core.properties;
  * @author zj
  */
 public class BrowserProperties {
-    private String loginPage = "/imooc-signIn.html";
+    private String loginPage = "/zj-signIn.html";
 
     private LoginResponseType loginType = LoginResponseType.JSON;
 

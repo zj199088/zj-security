@@ -3,6 +3,7 @@ package com.zj;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 /**
  * @author zj
  * @describe
@@ -10,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class ZjSecurityDemoApplication {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         SpringApplication.run(ZjSecurityDemoApplication.class, args);
     }
 }
